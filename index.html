@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width-device-width">
+   <title>Static Template</title>
+   <style>
+       body {
+           font-family: sans-serif;
+       }
+
+       span {
+           font-size: 24px;
+       }
+   </style>
+   <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<h1>Counter</h1>
+<div id="app"></div>
+<script type="text/babel">
+  const $app = document.getElementById('app')
+  const useState = React.useState
+
+  const Counter = () => {
+    const [count, counterUpdater] = useState(7)
+    const [times, timesUpdater] = useState(0)
+    const increment = () => {
+      counterUpdater(count + 1)
+      timesUpdater(times + 1)
+    }
+    const decrement = () => {
+      counterUpdater(count - 1)
+      timesUpdater(times + 1)
+    }
+    return (
+      <div>
+        <span>{count}</span>
+        <button onClick={increment}>Increment +</button>
+        <button onClick={decrement}>Decrement -</button>
+        <p>Times updated: {times}</p>
+      </div>
+    )
+  }
+
+  ReactDOM.render(
+    <div>
+      <Counter/>
+    </div>,
+    $app
+  )
+</script>
+</body>
+</html>

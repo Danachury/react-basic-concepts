@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Counter</title>
+</head>
+<body>
+<h1>Counter</h1>
+<div id="app"></div>
+<script type="text/babel">
+  const $app = document.getElementById('app')
+  const useState = React.useState
+
+  const Avatar = ({ id, name = 'Invited', size }) => {
+    const [enabled, setEnabled] = useState(true) // hook
+    const src = id
+      ? `https://randomuser.me/api/portraits/women/${id}.jpg`
+      : 'https://randomuser.me/api/portraits/lego/5.jpg'
+    let pictureClassName = size
+    const imgClassName = enabled ? '' : 'disabled'
+    const onClick = () => setEnabled(!enabled)
+    return (
+      <picture className={pictureClassName}>
+        <img src={src} alt={name} className={imgClassName} onClick={onClick}/>
+        <h4>{name}</h4>
+      </picture>
+    )
+  }
+
+  ReactDOM.render(
+    <div>
+      <Avatar id={1} name="Linda" size="small"/>
+      <Avatar id={2} name="Daniela"/>
+      <Avatar id={12} name="Ana" size="large"/>
+      <Avatar id={3} name="Leyla" size="large"/>
+      <Avatar size="small"/>
+    </div>,
+    $app
+  )
+</script>
+</body>
+</html>
